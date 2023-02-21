@@ -1,7 +1,6 @@
-#ifndef LINKED_H
-#define LINKED_H
+#ifndef LINK_H
+#define LINK_H
 #include "Node.h"
-
 class LinkedList
 {
 private:
@@ -11,8 +10,9 @@ private:
 public:
     LinkedList();
     void insert(Node *newNode,int pos);
-    Node* remove(int pos);
+    void remove(int pos);
     void print();
-    void printRe();
 };
+
+
 #endif

@@ -12,6 +12,8 @@ public:
     void insert(Node *newNode,int pos);
     void remove(int pos);
     void print();
+    void printHeadandTail();
+    void printFormtail();
 };
 
 

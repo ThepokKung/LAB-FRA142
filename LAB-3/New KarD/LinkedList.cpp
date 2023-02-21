@@ -31,6 +31,16 @@ void LinkedList::show()
     cout << endl;
 }
 
+void LinkedList::printpok()
+{
+    Node *temp = first;
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Node " << i << " Value : " << temp->getValue() << " Addr : " << temp <<" Prev -> " << temp->getprevaddr() << " Next -> " << temp->getnextaddr() << endl;
+        temp = first->getnextaddr();
+    }
+}
+
 int LinkedList::insert(Node *newNode, int pos)
 {
     if (size == 0)
@@ -75,32 +85,66 @@ int LinkedList::insert(Node *newNode, int pos)
         else if (pos > 0 or pos < size)
         {
             Node *temp1 = first;
-            Node *temp2 = temp1->getnextaddr();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < pos - 1; i++)
             {
-                if (i == pos - 1)
-                {
-                    temp1->setnextaddr(newNode);
-                    newNode->setprevaddr(temp1);
-                    newNode->setnextaddr(temp2);
-                    temp2->setprevaddr(newNode);
-                    size++;
-                    break;
-                }
-                else
-                {
-                    temp1 = temp1->getnextaddr();
-                    temp2 = temp2->getnextaddr();
-                }
+                temp1 = temp1->getnextaddr();
             }
+            Node *temp2 = temp1->getnextaddr();
+            temp1->setnextaddr(newNode);
+            newNode->setprevaddr(temp1);
+            newNode->setnextaddr(temp2);
+            temp2->setprevaddr(newNode);
+            size++;
         }
     }
     return 0;
 }
 
-int LinkedList::remove(int pos)
+int LinkedList::remove(int pos) // update remove(invert)
 {
-    if (pos < 0 or pos > size - 1)
+    if (pos < 0) //check invert remove
+    {
+        int abspos = pos * -1; //absolute of pos
+        if (abspos > size) //check out of range
+        {
+            cout << "error pos :" << pos << endl;
+            return 1;
+        }
+        else if (abspos == 1) //check pos from last
+        {
+            Node *temp = last->getprevaddr();
+            temp->setnextaddr(nullptr);
+            last->setprevaddr(nullptr);
+            last = temp;
+            size--;
+        }
+        else if (abspos == size) //check pos at first
+        {
+            Node *temp = first->getnextaddr();
+            first->setnextaddr(nullptr);
+            temp->setprevaddr(nullptr);
+            first = temp;
+            size--;
+        }
+        else //check pos between first and last
+        {
+            Node *temp2 = last;
+            pos *= -1;
+            for (int i = 0; i < pos - 2; i++)
+            {
+                temp2 = temp2->getprevaddr();
+            }
+            Node *removenode = temp2->getprevaddr();
+            Node *temp1 = temp2->getprevaddr()->getprevaddr();
+            temp1->setnextaddr(temp2);
+            temp2->setprevaddr(temp1);
+            removenode->setnextaddr(nullptr);
+            removenode->setprevaddr(nullptr);
+            size--;
+        }
+    }
+
+    else if (pos > size - 1)
     {
         cout << "error remove pos :" << pos << endl;
         return 1;

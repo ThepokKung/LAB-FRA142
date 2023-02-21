@@ -15,19 +15,17 @@ int main()
     list.insert(&n1, 0);
     list.insert(&n2, 1);
     list.insert(&n3, 2);
-    list.insert(&n4, 3);
-    list.insert(&n5, 4);
+    list.insert(&n4, 1);
+    list.insert(&n5, 0);
+
     list.print();
-    // cout << "********************************" << endl;
-    // list.printFormtail();
-    // cout << n3-> << endl;
 
     cout << "********************************" << endl;
-    // list.printHeadandTail();
+
     list.remove(0);
     list.remove(1);
-    list.remove(3);
 
     list.print();
+
     return 0;
 }

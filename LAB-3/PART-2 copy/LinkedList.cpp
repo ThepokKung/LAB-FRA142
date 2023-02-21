@@ -1,9 +1,9 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList()
+LinkedList::LinkedList() // constructor
 {
-    head = nullptr;
-    tail = nullptr;
+    head = NULL;
+    tail = NULL;
     size = 0;
 }
 
@@ -11,11 +11,10 @@ void LinkedList::insert(Node *newNode, int pos)
 {
     if (pos == 0)
     {
-        head = newNode;
+        head = newNode; 
         tail = newNode;
-        newNode->setNext(nullptr);
-        newNode->setPrev(nullptr);
         size++;
+        cout << "case 0 " << endl;
     }
     else if (pos < size && pos > 0)
     {
@@ -24,29 +23,33 @@ void LinkedList::insert(Node *newNode, int pos)
         {
             temp = temp->getNext();
         }
-        Node *A = temp->getNext();
+        Node *temp2 = temp->getNext();
         temp->setNext(newNode);
-        newNode->setNext(A);
-        A->setPrev(newNode);
+        newNode->setNext(temp2);
+        temp2->setPrev(newNode);
         newNode->setPrev(temp);
         size++;
+        cout << "case 1 " << endl;
     }
     else if (pos == size)
     {
-        Node *Temp = tail;
-        Temp->setNext(newNode);
-        newNode->setNext(nullptr);
-        newNode->setPrev(Temp);
+        Node *temp = tail;
+        temp->setNext(newNode);
+        // newNode->setNext(NULL);
+        newNode->setPrev(temp);
         tail = newNode;
         size++;
+        cout << "case 2 " << endl;
     }
-    else {
+    else
+    {
         cout << "Error" << endl;
     }
 }
 
-Node* LinkedList::remove(int pos){
-    Node* value = new Node();
+void LinkedList::remove(int pos)
+{
+    Node *value = new Node();
     if (pos == 0)
     {
         value = head;
@@ -54,10 +57,10 @@ Node* LinkedList::remove(int pos){
         head->setPrev(NULL);
         size--;
     }
-    else if (pos < size-1 && pos > 0)
+    else if (pos < size - 1 && pos > 0)
     {
         Node *temp = head;
-        for (int i = 0; i < pos-1; i++)
+        for (int i = 0; i < pos - 1; i++)
         {
             temp = temp->getNext();
         }
@@ -67,32 +70,27 @@ Node* LinkedList::remove(int pos){
         temp->getNext()->setPrev(temp);
         size--;
     }
-    else if (pos == size-1){
+    else if (pos == size - 1)
+    {
         Node *temp = tail;
         value = temp->getPrev();
         tail = temp->getPrev();
         temp->getPrev()->setNext(NULL);
         size--;
     }
-    else{
-        cout << "Error" << endl;
-    }
-    return value;
-};
-
-void LinkedList::print(){
-    Node *temp = head;
-    for (int i = 0; i < size; i++)
+    else
     {
-        cout << "Value : "<< i << " -> " << temp->getValue() << endl;
-        temp = temp->getNext();
+        cout << "Error" << endl;
     }
 }
 
-void LinkedList::printRe(){
-    Node *temp = tail;
-    for(int i = 0; i < size; i++){
-        cout << "Value : "<< i << " -> " << temp->getValue() << endl;
-        temp = temp->getPrev();
+
+void LinkedList::print()
+{
+     Node *temp = head;
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Node " << i << " Value : " << temp->getValue() << " Addr : " << temp <<" Prev -> " << temp->getPrev() << " Next -> " << temp->getNext() << endl;
+        temp = temp->getNext();
     }
 }

@@ -2,27 +2,30 @@
 #define NODE_H
 
 #include <iostream>
-
 using namespace std;
 
 class Node
 {
 private:
     int value;
-    Node *prev;
     Node *next;
 
 public:
-    Node(); // default constructor
-    Node(int newValue, Node *newPrev, Node *newNext);
-    /* Getter */
+    Node();
+
+    Node(int newValue);
+
+    Node(int newValue, Node *newNext);
+
     int getValue();
-    Node *getPrev();
-    Node *getNext();
-    /* Setter */
+
     void setValue(int newValue);
-    void setPrev(Node *newPrev);
+
+    Node *getNext();
+
     void setNext(Node *newNext);
+
+    void print();
 };
 
 #endif

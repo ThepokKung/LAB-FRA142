@@ -90,3 +90,14 @@ void LinkedList::print(){
         temp = temp->getNext();
     }
 }
+
+void LinkedList::printpok()
+{
+    Node *temp = head;
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Node " << i << " Value : " << temp->getValue() << " Addr : " << temp <<" Next -> " << temp->getNext() << endl;
+        temp = head->getNext();
+        cout << "TEMP NEXT : " << temp->getValue() <<
+    }
+}

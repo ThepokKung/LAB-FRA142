@@ -12,6 +12,7 @@ public:
     void insert(Node *newNode, int pos);
     Node* remove(int pos);
     void print();
+    void printpok();
 };
 
 #endif
