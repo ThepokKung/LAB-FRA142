@@ -59,5 +59,5 @@ Node *Node::getPrev() // returns prev Node
 
 void Node::printAll() // Print
 {
-    cout << "Valaue : " << value << " , Next : " << next->getValue() << endl;
+    cout << "Valaue : " << value << " , Prev : " << prev << " , Next : " << next << endl;
 }
