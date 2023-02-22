@@ -62,6 +62,10 @@ void LinkedList::insert(Node *newNode, int pos)
             cout << "INSERT CASE MIDDELE" << endl;
         }
     }
+    else
+    {
+        cout << "ERROR INSERT POSITION ERROR" << endl;
+    }
 }
 
 void LinkedList::remove(int pos)
@@ -73,8 +77,12 @@ void LinkedList::remove(int pos)
     else if (pos > size or pos < 0)
     {
         {
-            cout << "ERROR POSITION ERROR" << endl;
+            cout << "ERROR REMOVE POSITION ERROR" << endl;
         }
+    }
+    else if (size == pos)
+    {
+        cout << "ERROR REMOVE POSITION ERROR" << endl;
     }
     else if (size != 0)
     {
@@ -86,7 +94,7 @@ void LinkedList::remove(int pos)
             size--;
             cout << "REMOVE CASE POS = 0" << endl;
         }
-        else if (pos == size)
+        else if (pos == size - 1)
         {
             Node *temp = tail->getPrev();
             temp->setNext(NULL);
@@ -108,6 +116,10 @@ void LinkedList::remove(int pos)
             size--;
             cout << "REMOVE CASE MIDDLE " << endl;
         }
+    }
+    else
+    {
+        cout << "ERROR REMOVE POSITION ERROR" << endl;
     }
 }
 
@@ -136,4 +148,14 @@ void LinkedList::printHeadandTail()
 {
     cout << "Head " << head << endl;
     cout << "Tail " << tail << endl;
+}
+
+void LinkedList::append(Node *newNode)
+{
+    tail->setNext(newNode);
+    newNode->setPrev(tail);
+    newNode->setNext(nullptr);
+    tail = newNode;
+    size++;
+    cout << "APPEND CASE" << endl;
 }

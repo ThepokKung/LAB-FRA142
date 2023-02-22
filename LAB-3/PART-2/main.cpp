@@ -17,6 +17,7 @@ int main()
     list.insert(&n3, 2);
     list.insert(&n4, 3);
     list.insert(&n5, 4);
+    // list.append(&n6);
     list.print();
     // cout << "********************************" << endl;
     // list.printFormtail();
@@ -24,10 +25,16 @@ int main()
 
     cout << "********************************" << endl;
     // list.printHeadandTail();
+    /*
     list.remove(0);
-    list.remove(1);
-    list.remove(3);
-
     list.print();
+    cout << "********************************" << endl;
+    list.remove(0);
+    list.print();
+    cout << "********************************" << endl;
+    list.remove(0);
+    list.print();
+    cout << "********************************" << endl;
+        */
     return 0;
 }

@@ -14,6 +14,7 @@ public:
     void print();
     void printHeadandTail();
     void printFormtail();
+    void append(Node *newNode);
 };
 
 

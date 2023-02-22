@@ -36,7 +36,7 @@ void LinkedList::printpok()
     Node *temp = first;
     for (int i = 0; i < size; i++)
     {
-        cout << "Node " << i << " Value : " << temp->getValue() << " Addr : " << temp <<" Prev -> " << temp->getprevaddr() << " Next -> " << temp->getnextaddr() << endl;
+        cout << "Node " << i << " Value : " << temp->getValue() << " Addr : " << temp << " Prev -> " << temp->getprevaddr() << " Next -> " << temp->getnextaddr() << endl;
         temp = first->getnextaddr();
     }
 }
@@ -102,15 +102,15 @@ int LinkedList::insert(Node *newNode, int pos)
 
 int LinkedList::remove(int pos) // update remove(invert)
 {
-    if (pos < 0) //check invert remove
+    if (pos < 0) // check invert remove
     {
-        int abspos = pos * -1; //absolute of pos
-        if (abspos > size) //check out of range
+        int abspos = pos * -1; // absolute of pos
+        if (abspos > size)     // check out of range
         {
             cout << "error pos :" << pos << endl;
             return 1;
         }
-        else if (abspos == 1) //check pos from last
+        else if (abspos == 1) // check pos from last
         {
             Node *temp = last->getprevaddr();
             temp->setnextaddr(nullptr);
@@ -118,7 +118,7 @@ int LinkedList::remove(int pos) // update remove(invert)
             last = temp;
             size--;
         }
-        else if (abspos == size) //check pos at first
+        else if (abspos == size) // check pos at first
         {
             Node *temp = first->getnextaddr();
             first->setnextaddr(nullptr);
@@ -126,7 +126,7 @@ int LinkedList::remove(int pos) // update remove(invert)
             first = temp;
             size--;
         }
-        else //check pos between first and last
+        else // check pos between first and last
         {
             Node *temp2 = last;
             pos *= -1;
