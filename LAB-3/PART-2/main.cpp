@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool DEBUGNODE = true; // debug
+bool DEBUGNODE = false; // debug
 
 int main()
 {
@@ -17,30 +17,16 @@ int main()
     list.insert(&n1, 0);
     list.insert(&n2, 1);
     list.insert(&n3, 2);
-    list.insert(&n4, 3);
+    list.insert(&n4, 0);
+    list.insert(&n5, 2);
     list.print();
-    cout << "********************************" << endl;
-    list.insert(&n5, -2);
-    // list.append(&n5);
+
+    list.remove(0);
+    list.remove(3);
     list.print();
-    cout << "********************************" << endl;
-    // list.printFormtail();
+
     list.printHeadandTail();
-    // cout << n3-> << endl;
-
-    cout << "********************************" << endl;
-    // list.printHeadandTail();
-
-    list.remove(-3);
-    list.print();
-    cout << "********************************" << endl;
-    list.remove(-2);
-    list.print();
-    cout << "********************************" << endl;
-    list.remove(-1);
-    list.print();
-    cout << "********************************" << endl;
-
+    
     if (DEBUGNODE == true)
     {
         cout << "********************************" << endl;

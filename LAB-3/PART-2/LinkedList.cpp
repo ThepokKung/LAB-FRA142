@@ -36,6 +36,48 @@ void LinkedList::insert(Node *newNode, int pos)
     }
     else if (size != 0)
     {
+        if (pos == 0)
+        {
+            newNode->setNext(head);
+            newNode->setPrev(nullptr);
+            head->setPrev(newNode);
+            head = newNode;
+            size++;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = 0" << endl;
+            }
+        }
+        else if (pos == size)
+        {
+            tail->setNext(newNode);
+            newNode->setPrev(tail);
+            newNode->setNext(nullptr);
+            tail = newNode;
+            size++;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = SIZE" << endl;
+            }
+        }
+        else if (pos > 0 or pos < size)
+        {
+            Node *temp = head;
+            for (int i = 0; i < pos - 1; i++)
+            {
+                temp = temp->getNext();
+            }
+            Node *temp2 = temp->getNext();
+            temp->setNext(newNode);
+            newNode->setPrev(temp);
+            newNode->setNext(temp2);
+            temp2->setPrev(newNode);
+            size++;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " INSERT CASE MIDDELE" << endl;
+            }
+        }
         if (pos < 0) // Position < 0 (-)
         {
             if (abs(pos) == 1)
@@ -51,7 +93,7 @@ void LinkedList::insert(Node *newNode, int pos)
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " INSERT CASE POSSITION = -1" << endl;
                 }
             }
-            else if (abs(pos) < size) //Position < size 
+            else if (abs(pos) < size) // Position < size
             {
                 Node *temp = tail;
                 for (int i = 0; i < abs(pos) - 1; i++)
@@ -79,51 +121,6 @@ void LinkedList::insert(Node *newNode, int pos)
                 if (DEBUGLINKLIST == true)
                 {
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " INSERT CASE ABS(POS) POSSITION = SIZE" << endl;
-                }
-            }
-        }
-        else if (pos > 0)
-        {
-            if (pos == 0)
-            {
-                newNode->setNext(head);
-                newNode->setPrev(nullptr);
-                head->setPrev(newNode);
-                head = newNode;
-                size++;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = 0" << endl;
-                }
-            }
-            else if (pos == size)
-            {
-                tail->setNext(newNode);
-                newNode->setPrev(tail);
-                newNode->setNext(nullptr);
-                tail = newNode;
-                size++;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = SIZE" << endl;
-                }
-            }
-            else if (pos > 0 or pos < size)
-            {
-                Node *temp = head;
-                for (int i = 0; i < pos - 1; i++)
-                {
-                    temp = temp->getNext();
-                }
-                Node *temp2 = temp->getNext();
-                temp->setNext(newNode);
-                newNode->setPrev(temp);
-                newNode->setNext(temp2);
-                temp2->setPrev(newNode);
-                size++;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " INSERT CASE MIDDELE" << endl;
                 }
             }
         }
@@ -157,7 +154,51 @@ void LinkedList::remove(int pos)
     }
     else if (size != 0)
     {
-        if (pos < 0)
+        if (pos == 0)
+        {
+            Node *temp = head->getNext();
+            temp->setPrev(nullptr);
+            head->setNext(nullptr);
+            head = temp;
+            size--;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = 0" << endl;
+            }
+        }
+        else if (pos == size - 1)
+        {
+            Node *temp = tail->getPrev();
+            temp->setNext(NULL);
+            tail->setNext(nullptr);
+            tail->setPrev(nullptr);
+            tail = temp;
+            size--;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = SIZE" << endl;
+            }
+        }
+        else if (pos > 0 or pos < size)
+        {
+            Node *temp = head;
+            for (int i = 0; i < pos; i++)
+            {
+                temp = temp->getNext();
+            }
+            Node *tempPrev = temp->getPrev();
+            Node *tempNext = temp->getNext();
+            temp->setNext(nullptr);
+            temp->setPrev(nullptr);
+            tempPrev->setNext(tempNext);
+            tempNext->setPrev(tempPrev);
+            size--;
+            if (DEBUGLINKLIST == true)
+            {
+                cout << "YOUR POS INPUT " << pos << " REMOVE CASE MIDDLE " << endl;
+            }
+        }
+        else if (pos < 0)
         {
             if (abs(pos) == 1)
             {
@@ -201,48 +242,6 @@ void LinkedList::remove(int pos)
                 if (DEBUGLINKLIST == true)
                 {
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " REMOVE CASE (ABS)POS = SIZE" << endl;
-                }
-            }
-        }
-        else if (pos > 0)
-        {
-            if (pos == 0)
-            {
-                Node *temp = head->getNext();
-                temp->setPrev(NULL);
-                head = temp;
-                size--;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = 0" << endl;
-                }
-            }
-            else if (pos == size - 1)
-            {
-                Node *temp = tail->getPrev();
-                temp->setNext(NULL);
-                tail = temp;
-                size--;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = SIZE" << endl;
-                }
-            }
-            else if (pos > 0 or pos < size)
-            {
-                Node *temp = head;
-                for (int i = 0; i < pos; i++)
-                {
-                    temp = temp->getNext();
-                }
-                Node *tempPrev = temp->getPrev();
-                Node *tempNext = temp->getNext();
-                tempPrev->setNext(tempNext);
-                tempNext->setPrev(tempPrev);
-                size--;
-                if (DEBUGLINKLIST == true)
-                {
-                    cout << "YOUR POS INPUT " << pos << " REMOVE CASE MIDDLE " << endl;
                 }
             }
         }
