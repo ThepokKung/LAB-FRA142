@@ -22,11 +22,13 @@ int main()
     list.print();
 
     list.remove(0);
+
+    asdsfd->asdad();
     list.remove(3);
     list.print();
 
     list.printHeadandTail();
-    
+    5
     if (DEBUGNODE == true)
     {
         cout << "********************************" << endl;

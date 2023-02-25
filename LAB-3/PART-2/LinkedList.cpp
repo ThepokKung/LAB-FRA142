@@ -9,9 +9,9 @@ LinkedList::LinkedList() // constructor
 
 bool DEBUGLINKLIST = true; // DEBUGLINKLIST
 
-void LinkedList::insert(Node *newNode, int pos)
+void LinkedList::insert(Node *newNode, int pos) //insert to linked list 
 {
-    if (size == 0) // First Nodes
+    if (size == 0) // First Nodes 
     {
         head = newNode;
         tail = newNode;
@@ -25,7 +25,7 @@ void LinkedList::insert(Node *newNode, int pos)
             cout << "YOUR POS INPUT " << pos << " INSERT CASE SIZE = 0" << endl;
         }
     }
-    else if (pos > size or abs(pos) > size)
+    else if (pos > size or abs(pos) > size) // Size position overloaded
     {
         {
             if (DEBUGLINKLIST == true)
@@ -34,12 +34,12 @@ void LinkedList::insert(Node *newNode, int pos)
             }
         }
     }
-    else if (size != 0)
+    else if (size != 0) //Have size in linked list 
     {
-        if (pos == 0)
+        if (pos == 0) //Input position == 0 but have size in linked list
         {
             newNode->setNext(head);
-            newNode->setPrev(nullptr);
+            newNode->setPrev(nullptr); 
             head->setPrev(newNode);
             head = newNode;
             size++;
@@ -48,7 +48,8 @@ void LinkedList::insert(Node *newNode, int pos)
                 cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = 0" << endl;
             }
         }
-        else if (pos == size)
+        else if (pos == size) // Input position == size. It's don't add to last it second to last.
+
         {
             tail->setNext(newNode);
             newNode->setPrev(tail);
@@ -60,15 +61,15 @@ void LinkedList::insert(Node *newNode, int pos)
                 cout << "YOUR POS INPUT " << pos << " INSERT CASE POSSITION = SIZE" << endl;
             }
         }
-        else if (pos > 0 or pos < size)
+        else if (pos > 0 or pos < size) // Input position > 0 or pos < size. Insert in middle of linked list 
         {
-            Node *temp = head;
-            for (int i = 0; i < pos - 1; i++)
+            Node *temp = head; // Starting for head position
+            for (int i = 0; i < pos - 1; i++) //Loop to position (-1 for Goto perv position)
             {
-                temp = temp->getNext();
+                temp = temp->getNext(); // Next head loop 
             }
-            Node *temp2 = temp->getNext();
-            temp->setNext(newNode);
+            Node *temp2 = temp->getNext(); // Next position to temp for add to newNode
+            temp->setNext(newNode); 
             newNode->setPrev(temp);
             newNode->setNext(temp2);
             temp2->setPrev(newNode);
@@ -82,8 +83,8 @@ void LinkedList::insert(Node *newNode, int pos)
         {
             if (abs(pos) == 1)
             {
-                Node *temp = tail->getPrev();
-                temp->setNext(newNode);
+                Node *temp = tail->getPrev(); //In pos =1, it's start for tail and Go next position is Prev for tail
+                temp->setNext(newNode); 
                 newNode->setPrev(temp);
                 newNode->setNext(tail);
                 tail->setPrev(newNode);
@@ -93,14 +94,14 @@ void LinkedList::insert(Node *newNode, int pos)
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " INSERT CASE POSSITION = -1" << endl;
                 }
             }
-            else if (abs(pos) < size) // Position < size
+            else if (abs(pos) < size) // Position < size or insert pos to Middle 
             {
-                Node *temp = tail;
+                Node *temp = tail; //Start form tail
                 for (int i = 0; i < abs(pos) - 1; i++)
                 {
-                    temp = temp->getPrev();
+                    temp = temp->getPrev(); //Go Prev to position at you want
                 }
-                Node *tempPrev = temp->getPrev();
+                Node *tempPrev = temp->getPrev(); //Save Prev postion 
                 tempPrev->setNext(newNode);
                 newNode->setPrev(tempPrev);
                 newNode->setNext(temp);
@@ -111,7 +112,7 @@ void LinkedList::insert(Node *newNode, int pos)
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " INSERT CASE ABS(POS)MIDDLE " << endl;
                 }
             }
-            else if (abs(pos) == size)
+            else if (abs(pos) == size) //Position == size is add to head
             {
                 newNode->setNext(head);
                 newNode->setPrev(nullptr);
@@ -136,14 +137,14 @@ void LinkedList::insert(Node *newNode, int pos)
 
 void LinkedList::remove(int pos)
 {
-    if (size == 0)
+    if (size == 0) //Call remove but don't enoune size check
     {
         if (DEBUGLINKLIST == true)
         {
             cout << "YOUR POS INPUT " << pos << " ERROR CASE SIZE = 0" << endl;
         }
     }
-    else if (pos >= size or abs(pos) > size)
+    else if (pos >= size or abs(pos) > size) //Position is oversize
     {
         {
             if (DEBUGLINKLIST == true)
@@ -152,9 +153,9 @@ void LinkedList::remove(int pos)
             }
         }
     }
-    else if (size != 0)
+    else if (size != 0) //Have size in linkedList
     {
-        if (pos == 0)
+        if (pos == 0) //Remove Head
         {
             Node *temp = head->getNext();
             temp->setPrev(nullptr);
@@ -166,7 +167,7 @@ void LinkedList::remove(int pos)
                 cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = 0" << endl;
             }
         }
-        else if (pos == size - 1)
+        else if (pos == size - 1) //Remove for tail (size -1 because Likedlist start from 0 )
         {
             Node *temp = tail->getPrev();
             temp->setNext(NULL);
@@ -179,12 +180,12 @@ void LinkedList::remove(int pos)
                 cout << "YOUR POS INPUT " << pos << " REMOVE CASE POS = SIZE" << endl;
             }
         }
-        else if (pos > 0 or pos < size)
+        else if (pos > 0 or pos < size) //Remove Middle Position
         {
             Node *temp = head;
-            for (int i = 0; i < pos; i++)
+            for (int i = 0; i < pos; i++) //Loop to input position
             {
-                temp = temp->getNext();
+                temp = temp->getNext(); //Goto input position
             }
             Node *tempPrev = temp->getPrev();
             Node *tempNext = temp->getNext();
@@ -198,9 +199,9 @@ void LinkedList::remove(int pos)
                 cout << "YOUR POS INPUT " << pos << " REMOVE CASE MIDDLE " << endl;
             }
         }
-        else if (pos < 0)
+        else if (pos < 0) 
         {
-            if (abs(pos) == 1)
+            if (abs(pos) == 1) //Remove tail node
             {
                 Node *temp = tail->getPrev();
                 tail->setPrev(nullptr);
@@ -213,7 +214,7 @@ void LinkedList::remove(int pos)
                     cout << "YOUR POS INPUT " << pos << " REMOVE CASE ABS(POS) = -1" << endl;
                 }
             }
-            else if (abs(pos) < size)
+            else if (abs(pos) < size) //Remove middle node
             {
                 Node *temp = tail;
                 for (int i = 0; i < abs(pos) - 1; i++)
@@ -232,7 +233,7 @@ void LinkedList::remove(int pos)
                     cout << "YOUR POS INPUT " << pos << " (ABS) -> " << abs(pos) << " REMOVE CASE ABS(POS)MIDDLE " << endl;
                 }
             }
-            else if (abs(pos) == size)
+            else if (abs(pos) == size) // Remove head 
             {
                 Node *temp = head->getNext();
                 temp->setPrev(nullptr);
