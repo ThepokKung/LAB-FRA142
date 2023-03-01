@@ -7,15 +7,14 @@ private:
     Node *head;
     Node *tail;
     int size;
+
 public:
     LinkedList();
-    void insert(Node *newNode,int pos);
+    void insert(Node *newNode, int pos);
     void remove(int pos);
     void print();
     void printHeadandTail();
     void printFormtail();
     void append(Node *newNode);
 };
-
-
 #endif
