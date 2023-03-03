@@ -7,12 +7,18 @@ int main()
 {
     /* EX1 */
     Person pok = Person("Pok", 172, 18);
-    Student tin = Student("tin", 170, 18, 6519, 10);
+    Student tin = Student("Tin", 180, 20, 6505, 10);
     pok.showPersonInfo();
     tin.showStudentInfo();
-
     /* EX2 */
-    Teacher Blink = Teacher("Blink", 175, 30, "Programing");
+    Teacher Blink = Teacher("Blinkimon", 175, 30, "Programming");
+    Blink.setSubject("Math");
     Blink.showTeacherInfo();
+
+    /* Test */
+    // Student Test = Student();
+    // Teacher Test2 = Teacher();
+    // Test.showStudentInfo();
+    // Test2.showTeacherInfo();
     return 0;
 }
