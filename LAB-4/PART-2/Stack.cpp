@@ -26,11 +26,10 @@ void Stack::push(Node *newNode) // Push Stack
 
 Node *Stack::pop()
 {
+    return remove(getsize() - 1);
 #ifdef DEBUG
     cout << "Call Stack pop" << endl;
 #endif
-    int deleter = getsize() - 1;
-    return remove(deleter);
 }
 
 Node *Stack::peek()

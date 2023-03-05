@@ -151,7 +151,7 @@ Node *LinkedList::remove(int pos)
             Node *temp = head->getNext();
             temp->setPrev(nullptr);
             head->setNext(nullptr);
-            forShow = temp;
+            forShow = head;
             head = temp;
             size--;
 #ifdef DEBUG
@@ -282,11 +282,10 @@ void LinkedList::append(Node *newNode)
 
 int LinkedList::getsize()
 {
+    return size;
 #ifdef DEBUG
     cout << "GETSIZE" << endl;
 #endif
-
-    return size;
 }
 
 void LinkedList::print()
