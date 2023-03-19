@@ -11,10 +11,7 @@ t = 1
 v = 0
 
 while (1):
-    screen.fill((255, 255, 255))
-
-    pg.draw.circle(screen, (100, 100, 100), (posX, posY), 20)
-    pg.display.update()
+    
 
     s = u*t
     u = u+(a*t)
@@ -25,6 +22,10 @@ while (1):
         pg.quit()
         exit()
 
+    
+    screen.fill((255, 255, 255))
+    pg.draw.circle(screen, (100, 100, 100), (posX, posY), 20)
+    pg.display.update()
     pg.time.delay(1)
 
     for event in pg.event.get():

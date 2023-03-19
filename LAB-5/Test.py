@@ -1,19 +1,45 @@
-import pygame as pg
-win_x = 800
-win_y = 480
-screen = pg.display.set_mode((win_x, win_y))
-posX, posY = -20, -20
+import math
+import pygame
 
-while(1):
+# Initialize Pygame
+pygame.init()
+
+# Set up the game window
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+# Set up the projectile
+x = screen_width/2
+y = screen_height/2
+u = 50 # initial velocity magnitude
+theta = math.pi/4 # launch angle in radians
+vx = u*math.cos(theta) # horizontal velocity component
+vy = -u*math.sin(theta) # vertical velocity component (negative because y-axis is flipped in Pygame)
+a = 9.81 # acceleration due to gravity (m/s^2)
+t = 0 # elapsed time
+dt = 0.01 # time step
+radius = 10
+
+# Game loop
+while True:
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+
+    # Update the projectile's position and velocity
+    t += dt
+    x += vx*dt
+    y += vy*dt + 0.5*a*dt**2
+    vy += a*dt
+
+    # Clear the screen
     screen.fill((255, 255, 255))
-    
-    if pg.mouse.get_pressed()[0] == 1: # Check mouse pressed
-        (posX, posY) = pg.mouse.get_pos()
-        
-    pg.draw.circle(screen,(100,100,100),(posX,posY),20)
-    pg.display.update()
-    
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            pg.quit()
-            exit()
+
+    # Draw the projectile
+    pygame.draw.circle(screen, (255, 0, 0), (int(x), int(y)), radius)
+
+    # Update the display
+    pygame.display.update()
