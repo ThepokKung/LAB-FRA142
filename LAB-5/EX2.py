@@ -12,7 +12,6 @@ v = 0
 
 while (1):
     
-
     s = u*t
     u = u+(a*t)
     t =+ 1
@@ -21,7 +20,6 @@ while (1):
     if (posY > win_y):
         pg.quit()
         exit()
-
     
     screen.fill((255, 255, 255))
     pg.draw.circle(screen, (100, 100, 100), (posX, posY), 20)
