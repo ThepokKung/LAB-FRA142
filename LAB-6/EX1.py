@@ -17,15 +17,16 @@ while(run):
     screen.fill((255, 255, 255))
     # firstObject.draw(screen) # ใส่ screen เข้าไปด้วยเพราะว่าคำสั่ง pg.draw.rect จะเป็นจะต้องระบุระนาบว่าต้องการสร้างรูปบนระนาบใด
 
-    # if btn.isMouseOn():
-    #     btn.w = 200
-    #     btn.h = 300
-        
-    #     if btn.isMousePress():
-    #         print("Test")
-    # else:
-    #     btn.w = 100
-    #     btn.h = 100
+    if btn.isMouseOn():
+        btn.w = 200
+        btn.h = 300
+        btn.color=pg.Color('gray')
+        if btn.isMousePress():
+            btn.color = pg.Color('purple')
+    else:
+        btn.w = 100
+        btn.h = 100
+        btn.color = pg.Color('red')
     btn.draw(screen)
 
     pg.display.update()
@@ -34,9 +35,3 @@ while(run):
         if event.type == pg.QUIT:
             pg.quit()
             run = False
-        if event.type == pg.KEYDOWN and event.key == pg.K_d: #ปุ่มถูกกดลงและเป็นปุ่ม D
-            print("Key D down")
-        if event.type == pg.KEYUP and event.key == pg.K_a: #ปุ่มถูกปล่อยและเป็นปุ่ม A
-            print("Key A up")
-        if event.type == pg.KEYDOWN and event.key == pg.K_w:
-            print("Key W")
