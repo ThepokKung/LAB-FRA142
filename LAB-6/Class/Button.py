@@ -6,9 +6,9 @@ from Class.Rectangle import Rectangle
 class Button(Rectangle):
     def __init__(self, x=0, y=0, w=0, h=0):
         Rectangle.__init__(self, x, y, w, h)
-        # self.color = pg.Color('red')
-        # self.press_Color = pg.Color('purple')
-        # self.on_Color = pg.Color('gray')
+        self.color = pg.Color('red')
+        self.press_Color = pg.Color('purple')
+        self.on_Color = pg.Color('gray')
 
 
     def isMouseOn(self):
@@ -28,11 +28,11 @@ class Button(Rectangle):
                 return True
         return False
 
-    # def draw(self, screen):
-    #     if self.isMouseOn():
-    #         pg.draw.rect(screen,self.on_Color,(self.x,self.y,self.w,self.h))
-    #         if self.isMousePress():
-    #              pg.draw.rect(screen,self.press_Color,(self.x,self.y,self.w,self.h))
-    #     else:
-    #          pg.draw.rect(screen,self.color,(self.x,self.y,self.w,self.h))
+    def draw(self, screen):
+        if self.isMouseOn():
+            pg.draw.rect(screen,self.on_Color,(self.x,self.y,self.w,self.h))
+            if self.isMousePress():
+                 pg.draw.rect(screen,self.press_Color,(self.x,self.y,self.w,self.h))
+        else:
+             pg.draw.rect(screen,self.color,(self.x,self.y,self.w,self.h))
     
