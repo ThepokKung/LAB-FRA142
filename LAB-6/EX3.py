@@ -104,10 +104,8 @@ while run:
         btn.color = pg.Color('Blue')
         if btn.isMousePress():
             # print("Mouse Press")
-            temp = "Hello {} {}! You are {} years old.".format(
-                input_box1.text, input_box2.text, input_box3.text)
-            textTemp = font.render(
-                temp, True, pg.Color('Black'), pg.Color('White'))
+            temp = "Hello {} {}! You are {} years old.".format(input_box1.text, input_box2.text, input_box3.text)
+            textTemp = font.render(temp, True, pg.Color('Black'), pg.Color('White'))
             textTempRect = textTemp.get_rect()
             textTempRect.center = (int(win_x/2), 450)
     else:
